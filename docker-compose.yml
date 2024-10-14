@@ -6,6 +6,8 @@ services:
       - 7860:7860
     volumes:
       - .:/code
+    environment:
+      - OLLAMA_API_BASE_URL=https://api.snowsecure.net
     networks:
       - local_network
 
@@ -18,16 +20,7 @@ services:
       - ./data/chroma:/chroma/chroma
     networks:
       - local_network
-  ollama:
-    container_name: ollama
-    image: ollama/ollama:latest
-    ports:
-      - 11434:11434
-    volumes:
-      - ./data/ollama:/root/.ollama
-    networks:
-      - local_network
-      
+
 networks:
   local_network:
     driver: bridge
