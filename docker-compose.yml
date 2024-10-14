@@ -1,26 +1,23 @@
+version: '3'
 services:
   app:
-    container_name: app
+    container_name: rag-chatbot-app
     build: .
     ports:
-      - 7860:7860
+      - "7860:7860"
     volumes:
       - .:/code
     environment:
-      - OLLAMA_API_BASE_URL=https://api.snowsecure.net
-    networks:
-      - local_network
+      - OLLAMA_API_BASE_URL=https://api.snowsecure.net/
 
   chromadb:
-    container_name: chromadb
+    container_name: rag-chatbot-chromadb
     image: chromadb/chroma:latest
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - ./data/chroma:/chroma/chroma
-    networks:
-      - local_network
 
 networks:
-  local_network:
-    driver: bridge
+  default:
+    name: rag-chatbot-network
