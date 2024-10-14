@@ -8,13 +8,13 @@ services:
     volumes:
       - .:/code
     environment:
-      - OLLAMA_API_BASE_URL=https://api.snowsecure.net/
+      - OLLAMA_API_BASE_URL=${OLLAMA_API_BASE_URL}
 
   chromadb:
     container_name: rag-chatbot-chromadb
     image: chromadb/chroma:latest
     ports:
-      - "8000:8000"
+      - "8001:8000"  # Changed from 8000:8000 to 8001:8000
     volumes:
       - ./data/chroma:/chroma/chroma
 
